@@ -141,5 +141,12 @@ def get_ip_latest(ip):
 
 
 if __name__ == '__main__':
-    create_tables()
-    app.run(host='0.0.0.0', port=9999)
+    try:
+        create_tables()
+        app.run(host='0.0.0.0', port=9999, debug=True)
+    except Exception as e:
+        with open("error.log", "w") as f:
+            f.write(str(e))
+        import time
+
+        time.sleep(10)
